@@ -94,6 +94,11 @@ def controlButtons():
             emoji='⏩',
             custom_id='fastright'
         ),
+        Button(
+            style=ButtonStyles.GRAY,
+            emoji='🔃',
+            custom_id='refresh'
+        ),
         Select(
             custom_id='colourselect',
             placeholder='Choose a pixel colour',
@@ -165,7 +170,7 @@ def buttons_embed(picurl:str):
         title='Canvas Controls',
     )
     scs = '**Canvas Size:** 960x540\n⬅️:Move left by 1 pixel\n➡️:Move right by 1 pixel\n⬆️:Move up by 1 pixel\n⬇️:Move down by 1 pixel\n🖌️:Place down a pixel'
-    fcs = '⏪:Move left by 10 pixels\n⏩:Move right by 10 pixels\n⏫:Move up by 10 pixels\n⏬:Move down by 10 pixels'
+    fcs = '⏪:Move left by 10 pixels\n⏩:Move right by 10 pixels\n⏫:Move up by 10 pixels\n⏬:Move down by 10 pixels\n🔃:Refresh the canvas snippet'
     embed.add_field('Control Schema:', f'{scs}\n\n{fcs}')
     embed.set_image(picurl)
     return embed
@@ -385,6 +390,17 @@ class controls(Extension):
                 user.position.colour = value
                 await user.save()
                 await ctx.send(f'Your colour is now changed to {value}.', ephemeral=True)
+    
+    @listen()
+    async def on_refresh(self, event: Component):
+        ctx = event.context
+        if ctx.custom_id == 'refresh':
+            user = await db.users.get(ctx.author.id)
+            if user is None:
+                return await ctx.send(f'You need to start first.', ephemeral=True)
+            cropurl = await canvas_snippet(self.bot, user)
+            embed = buttons_embed(cropurl)
+            await ctx.edit_origin(embed=embed, components=controlButtons())
     
     @slash_command(name='botinfo', description="lets me see info about the bot")
     async def botinfo(self, ctx: InteractionContext):
