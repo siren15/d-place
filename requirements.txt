@@ -1,0 +1,8 @@
+naff
+fastapi
+sse_starlette
+starsessions
+jinja2
+beanie
+pymongo
+motor
