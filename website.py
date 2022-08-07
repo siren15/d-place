@@ -58,14 +58,14 @@ async def sse(request:Request):
         await asyncio.sleep(1)
     return EventSourceResponse(event_generator())
 
-@app.post('/api/add')
-async def addpixel(request: Request, position: db.PixelPosition):
-    pos = await db.PixelPlace.find_one({'x':position.x, 'y':position.y})
-    if pos is None:
-        await db.PixelPlace(x=position.x, y=position.y, colour=position.colour).insert()
-    else:
-        pos.colour = position.colour
-        await pos.save()
-    return position
+# @app.post('/api/add')
+# async def addpixel(request: Request, position: db.PixelPosition):
+#     pos = await db.PixelPlace.find_one({'x':position.x, 'y':position.y})
+#     if pos is None:
+#         await db.PixelPlace(x=position.x, y=position.y, colour=position.colour).insert()
+#     else:
+#         pos.colour = position.colour
+#         await pos.save()
+#     return position
 
 ensure_future(db.connect_db())
