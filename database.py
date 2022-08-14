@@ -6,7 +6,7 @@ from beanie import Document as BeanieDocument, TimeSeriesConfig, Granularity, in
 import motor
 import os
 
-database_url = os.environ['pt_mongo_url']
+database_url = 'mongodb://mongo:dPDPwvxcaAd4dCN0UlIc@containers-us-west-35.railway.app:6339'
 
 class Document(BeanieDocument):
     def __hash__(self):

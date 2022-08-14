@@ -1,3 +1,4 @@
+from cProfile import run
 import os
 import asyncio
 from typing import Optional
@@ -85,6 +86,5 @@ class CustomClient(Client):
     def add_model(self, model):
         self.models.append(model)
 
-if __name__ == "__main__":
-    bot = CustomClient()
-    asyncio.run(bot.startup())
+bot = CustomClient()
+# asyncio.run(bot.startup())

@@ -1,4 +1,5 @@
 from asyncio import ensure_future
+import uvicorn
 import asyncio
 import json
 from fastapi import FastAPI
@@ -67,5 +68,5 @@ async def sse(request:Request):
 #         pos.colour = position.colour
 #         await pos.save()
 #     return position
-
-ensure_future(db.connect_db())
+from bot import bot
+asyncio.ensure_future(bot.startup())
