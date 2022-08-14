@@ -1,4 +1,4 @@
-const sse = new EventSource('/api/fetch');
+const sse = new EventSource('https://dplace.up.railway.app/api/fetch');
     sse.addEventListener("notice", function(e) {
     console.log(e.data)
     })
