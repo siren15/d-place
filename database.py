@@ -4,6 +4,9 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 from beanie import Document as BeanieDocument, TimeSeriesConfig, Granularity, init_beanie
 import motor
+import os
+
+database_url = os.environ['pt_mongo_url']
 
 class Document(BeanieDocument):
     def __hash__(self):
@@ -41,7 +44,7 @@ class users(Document):
     pixels_placed: int64 = 0
     
 async def connect_db():
-    dburl = motor.motor_asyncio.AsyncIOMotorClient("mongodb://localhost:27017")
+    dburl = motor.motor_asyncio.AsyncIOMotorClient(database_url)
     await init_beanie(database=dburl.hackathon, document_models=[
         PixelPlace,
         logs,
