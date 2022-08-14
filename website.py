@@ -19,7 +19,8 @@ origins = [
     "http://localhost:8080",
     "https://beni2am.herokuapp.com",
     "http://beni2am.herokuapp.com",
-    "https://haigb.herokuapp.com"
+    "https://haigb.herokuapp.com",
+    "https://dplace.up.railway.app/"
 ]
 
 app.add_middleware(
