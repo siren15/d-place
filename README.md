@@ -12,3 +12,4 @@ A replication of r/place but as a discord bot. Created for the bot's [library](h
 - `/stats` to show you your stats
 - `/screenshot` to take a screenshot of the current canvas
 - `/botinfo` to show some basic bot info
+- `/canvas` to show the live canvas

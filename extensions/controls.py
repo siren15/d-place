@@ -417,9 +417,19 @@ class controls(Extension):
         embed.add_field(name="Library:", value="[NAFF](https://naff.info/)")
         embed.add_field(name="Servers:", value=len(self.bot.user.guilds))
         embed.add_field(name="Bot Latency:", value=f"{self.bot.latency * 1000:.0f} ms")
-        embed.add_field(name='‎', value='**[GitHub](https://github.com/siren15/melody)**')
+        embed.add_field(name='‎', value='**[GitHub](https://github.com/siren15/d-place)**')
+        embed.add_field(name='‎', value='**[Live Canvas](https://dplace.up.railway.app/)**')
         embed.set_footer(text="Melody | powered by NAFF")
         await ctx.send(embed=embed)
+    
+    @slash_command(name='canvas', description='Check the live canvas!')
+    async def leaderboard(self, ctx: InteractionContext):
+        components = Button(
+            style=ButtonStyles.URL,
+            label="Click Me!",
+            url=f"https://dplace.up.railway.app/",
+        )
+        await ctx.send("A button to the website canvas!", components=components)
 
 def setup(bot):
     controls(bot)
