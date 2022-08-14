@@ -7,3 +7,4 @@ beanie
 pymongo
 motor
 uvicorn
+pillow
